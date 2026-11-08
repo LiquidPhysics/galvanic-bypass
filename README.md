@@ -1,8 +1,7 @@
 # celldx
 
 **celldx is our own cell heat-fault diagnosis algorithm**, built by team **Galvanic Bypass**
-(Rhythm, Aaryan, Anirudh and Sifa) for the REON challenge "Beyond the Weakest Cell: Making Every
-Cell Count" at the MIT Energy & Climate Hack 2026. It looks at each cell of a pack with per-cell
+(Rhythm, Aaryan, Anirudh and Sifa) for the REON challenge for MITEC'26. It looks at each cell of a pack with per-cell
 sensing and bypass, works out which cells are developing a heat-related fault and why, and decides
 what the pack should do about it. It feeds the Heat Atlas frontend.
 
