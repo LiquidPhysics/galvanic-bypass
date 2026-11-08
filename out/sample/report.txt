@@ -1,0 +1,516 @@
+# celldx report (3.0.0, profile prototype, config dbc46eb9dc22b53e)
+
+Generated 2026-11-08T02:03:54+00:00. Probabilities are **uncalibrated_scores** (calibration: none). 32 cells, 1 with fault probability >= 0.5.
+
+## C20 (pack0/string0, cycle_mode)
+
+**Fault probability 100% (interval 100% to 100%), uncalibrated score. Most likely cause: Mechanical fault: contact corrosion. Confidence Low (0.13).**
+
+Cause probabilities: Mechanical fault: contact corrosion 0.55, Cooling fault (self-heating) 0.27, Ambiguous ageing 0.11, Lithium plating 0.06
+
+Confidence Low (0.13); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Mechanical fault: contact corrosion 0.55, Cooling fault (self-heating) 0.27, Ambiguous ageing 0.11.
+- Corrected resistance (25 C, SOC-referred) is +267% versus baseline R0 1.19 mOhm; raw resistance is +203% at a recent median 37.3 C. The fault band starts at +15% corrected.
+- Largest resistance step: -4% with z = 2.0 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 15.6 K).
+- Growth fit R25 = a + b sqrt(t): R^2 = 0.18. Median OCV deviation n/a mV, SOH 0.996.
+- Gradual growth that does not follow temperature and without OCV drift points to contact corrosion.
+- Cell runs +3.4 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Diverges from its 31 neighbours (robust z = +42.4).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+- decision-tree fallback says Ambiguous ageing (disagrees)
+
+## C02 (pack0/string0, cycle_mode)
+
+**Fault probability 51% (interval 40% to 60%), uncalibrated score, but spread over several causes: no single fault cause is more likely than Healthy. Treat as unresolved; collect more data. Confidence Low (0.12).**
+
+Cause probabilities: Healthy 0.48, Mechanical fault: contact corrosion 0.25, Cooling fault (self-heating) 0.13, Ambiguous ageing 0.08, Lithium plating 0.05
+
+Confidence Low (0.12); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.48, Mechanical fault: contact corrosion 0.25, Cooling fault (self-heating) 0.13.
+- Corrected resistance (25 C, SOC-referred) is +17% versus baseline R0 1.19 mOhm; raw resistance is -1% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -5% with z = 2.1 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.4 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+- decision-tree fallback says Ambiguous ageing (disagrees)
+
+## C21 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 26% (interval 13% to 35%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.74, Cooling fault (self-heating) 0.14, Ambiguous ageing 0.06, Lithium plating 0.03, Mechanical fault: contact corrosion 0.02
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.74, Cooling fault (self-heating) 0.14, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +5% versus baseline R0 1.19 mOhm; raw resistance is -15% at a recent median 37.3 C. The fault band starts at +15% corrected.
+- Largest resistance step: +6% with z = 2.2 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 14.9 K).
+- Cell runs +3.4 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C13 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 25% (interval 12% to 35%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.75, Cooling fault (self-heating) 0.16, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.75, Cooling fault (self-heating) 0.16, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -2% versus baseline R0 1.19 mOhm; raw resistance is -21% at a recent median 37.3 C. The fault band starts at +15% corrected.
+- Largest resistance step: -4% with z = 1.8 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 14.6 K).
+- Cell runs +3.6 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C23 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 24% (interval 14% to 31%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.76, Cooling fault (self-heating) 0.12, Ambiguous ageing 0.06, Lithium plating 0.03, Mechanical fault: contact corrosion 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.76, Cooling fault (self-heating) 0.12, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +6% versus baseline R0 1.19 mOhm; raw resistance is -12% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -6% with z = 4.0 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.9 K).
+- Cell runs +3.0 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C19 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 24% (interval 12% to 29%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.76, Cooling fault (self-heating) 0.14, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.76, Cooling fault (self-heating) 0.14, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +0% versus baseline R0 1.19 mOhm; raw resistance is -22% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: +6% with z = 1.8 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 15.1 K).
+- Cell runs +3.4 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C18 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 24% (interval 14% to 30%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.76, Cooling fault (self-heating) 0.12, Ambiguous ageing 0.06, Lithium plating 0.03, Mechanical fault: contact corrosion 0.02
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.76, Cooling fault (self-heating) 0.12, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +5% versus baseline R0 1.19 mOhm; raw resistance is -14% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -4% with z = 2.3 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 14.2 K).
+- Cell runs +3.1 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C04 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 23% (interval 13% to 32%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.76, Cooling fault (self-heating) 0.13, Ambiguous ageing 0.06, Lithium plating 0.03, Mechanical fault: contact corrosion 0.02
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.76, Cooling fault (self-heating) 0.13, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +4% versus baseline R0 1.19 mOhm; raw resistance is -15% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: +4% with z = 2.5 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.7 K).
+- Cell runs +3.2 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C14 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 23% (interval 12% to 35%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.77, Cooling fault (self-heating) 0.14, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.77, Cooling fault (self-heating) 0.14, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -2% versus baseline R0 1.19 mOhm; raw resistance is -19% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -6% with z = 2.4 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 14.2 K).
+- Cell runs +3.3 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C12 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 23% (interval 11% to 37%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.77, Cooling fault (self-heating) 0.14, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.77, Cooling fault (self-heating) 0.14, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -10% versus baseline R0 1.19 mOhm; raw resistance is -25% at a recent median 37.3 C. The fault band starts at +15% corrected.
+- Largest resistance step: -8% with z = 2.6 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 14.6 K).
+- Cell runs +3.4 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C22 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 22% (interval 11% to 32%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.78, Cooling fault (self-heating) 0.13, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.78, Cooling fault (self-heating) 0.13, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -5% versus baseline R0 1.19 mOhm; raw resistance is -23% at a recent median 37.3 C. The fault band starts at +15% corrected.
+- Largest resistance step: +3% with z = 1.3 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 14.3 K).
+- Cell runs +3.3 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C11 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 22% (interval 12% to 31%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.78, Cooling fault (self-heating) 0.13, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.78, Cooling fault (self-heating) 0.13, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -2% versus baseline R0 1.19 mOhm; raw resistance is -20% at a recent median 37.3 C. The fault band starts at +15% corrected.
+- Largest resistance step: -6% with z = 2.4 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 14.4 K).
+- Cell runs +3.2 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C15 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 22% (interval 12% to 28%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.78, Cooling fault (self-heating) 0.12, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.78, Cooling fault (self-heating) 0.12, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -0% versus baseline R0 1.19 mOhm; raw resistance is -17% at a recent median 37.1 C. The fault band starts at +15% corrected.
+- Largest resistance step: -5% with z = 1.7 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.9 K).
+- Cell runs +3.2 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C03 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 22% (interval 13% to 29%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.78, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06, Lithium plating 0.03, Mechanical fault: contact corrosion 0.02
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.78, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +4% versus baseline R0 1.19 mOhm; raw resistance is -15% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -4% with z = 1.4 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.6 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C30 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 21% (interval 12% to 25%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.79, Cooling fault (self-heating) 0.12, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.79, Cooling fault (self-heating) 0.12, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -0% versus baseline R0 1.19 mOhm; raw resistance is -18% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -6% with z = 2.5 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.5 K).
+- Cell runs +3.1 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C28 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 21% (interval 11% to 28%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.79, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.79, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -4% versus baseline R0 1.19 mOhm; raw resistance is -20% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -5% with z = 2.2 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 14.3 K).
+- Cell runs +3.0 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C29 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 21% (interval 12% to 27%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.79, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.79, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -1% versus baseline R0 1.19 mOhm; raw resistance is -18% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: +4% with z = 1.3 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.9 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C05 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 21% (interval 11% to 27%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.79, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.79, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -5% versus baseline R0 1.19 mOhm; raw resistance is -22% at a recent median 37.4 C. The fault band starts at +15% corrected.
+- Largest resistance step: -6% with z = 1.9 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.5 K).
+- Cell runs +3.0 K relative to the pack (expected I^2R heating 0.0 K); a cooling fault starts at about +6 K.
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C17 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 20% (interval 13% to 25%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.80, Cooling fault (self-heating) 0.10, Ambiguous ageing 0.06, Lithium plating 0.03, Mechanical fault: contact corrosion 0.01
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.80, Cooling fault (self-heating) 0.10, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +3% versus baseline R0 1.19 mOhm; raw resistance is -13% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -5% with z = 1.9 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.4 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C25 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 20% (interval 14% to 24%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.80, Cooling fault (self-heating) 0.08, Ambiguous ageing 0.06, Lithium plating 0.03, Mechanical fault: contact corrosion 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.80, Cooling fault (self-heating) 0.08, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +6% versus baseline R0 1.19 mOhm; raw resistance is -12% at a recent median 37.1 C. The fault band starts at +15% corrected.
+- Largest resistance step: +5% with z = 2.5 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.2 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C10 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 20% (interval 11% to 28%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.80, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.80, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -7% versus baseline R0 1.19 mOhm; raw resistance is -24% at a recent median 37.3 C. The fault band starts at +15% corrected.
+- Largest resistance step: +4% with z = 1.8 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.9 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C06 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 20% (interval 11% to 25%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.80, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.80, Cooling fault (self-heating) 0.11, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -15% versus baseline R0 1.19 mOhm; raw resistance is -28% at a recent median 37.3 C. The fault band starts at +15% corrected.
+- Largest resistance step: -5% with z = 1.9 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.3 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C27 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 19% (interval 11% to 28%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.81, Cooling fault (self-heating) 0.10, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.81, Cooling fault (self-heating) 0.10, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -11% versus baseline R0 1.19 mOhm; raw resistance is -29% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: -4% with z = 1.4 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.8 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C31 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 19% (interval 11% to 24%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.81, Cooling fault (self-heating) 0.10, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.81, Cooling fault (self-heating) 0.10, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -10% versus baseline R0 1.19 mOhm; raw resistance is -23% at a recent median 37.1 C. The fault band starts at +15% corrected.
+- Largest resistance step: +5% with z = 1.7 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.3 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C07 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 19% (interval 12% to 24%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.81, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.81, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is +1% versus baseline R0 1.19 mOhm; raw resistance is -16% at a recent median 37.1 C. The fault band starts at +15% corrected.
+- Largest resistance step: +4% with z = 3.4 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.1 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C16 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 18% (interval 11% to 22%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -5% versus baseline R0 1.19 mOhm; raw resistance is -19% at a recent median 37.0 C. The fault band starts at +15% corrected.
+- Largest resistance step: +4% with z = 1.9 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 12.8 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C26 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 18% (interval 12% to 25%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -1% versus baseline R0 1.19 mOhm; raw resistance is -18% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: +4% with z = 1.5 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.4 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C09 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 18% (interval 11% to 25%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -11% versus baseline R0 1.19 mOhm; raw resistance is -25% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: +5% with z = 3.1 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.2 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C24 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 18% (interval 11% to 21%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.09, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -8% versus baseline R0 1.19 mOhm; raw resistance is -20% at a recent median 37.2 C. The fault band starts at +15% corrected.
+- Largest resistance step: +4% with z = 2.7 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 13.0 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C08 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 18% (interval 12% to 20%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.08, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.82, Cooling fault (self-heating) 0.08, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -1% versus baseline R0 1.19 mOhm; raw resistance is -18% at a recent median 36.9 C. The fault band starts at +15% corrected.
+- Largest resistance step: +4% with z = 1.2 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 12.4 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C32 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 17% (interval 11% to 20%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.83, Cooling fault (self-heating) 0.08, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.83, Cooling fault (self-heating) 0.08, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -10% versus baseline R0 1.19 mOhm; raw resistance is -22% at a recent median 37.0 C. The fault band starts at +15% corrected.
+- Largest resistance step: +3% with z = 1.5 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 12.6 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## C01 (pack0/string0, cycle_mode)
+
+**No cell fault: fault probability 17% (interval 11% to 20%), uncalibrated score. Confidence Low (0.18).**
+
+Cause probabilities: Healthy 0.83, Cooling fault (self-heating) 0.08, Ambiguous ageing 0.06, Lithium plating 0.03
+
+Confidence Low (0.18); cycle_mode data: no pulse split or voltage noise
+- baseline: open-data population baseline (trust 0.85)
+
+- Cause probabilities: Healthy 0.83, Cooling fault (self-heating) 0.08, Ambiguous ageing 0.06.
+- Corrected resistance (25 C, SOC-referred) is -5% versus baseline R0 1.19 mOhm; raw resistance is -21% at a recent median 37.0 C. The fault band starts at +15% corrected.
+- Largest resistance step: +5% with z = 1.7 (a step needs about +12% and z above 5).
+- Temperature-independent share unavailable: needs >= 60 samples and >= 8.0 K spread in the last 365 (have 36 samples, 12.4 K).
+- Confidence x0.90: cycle_mode data: no pulse split or voltage noise.
+
+## Data validation
+
+- n_rows: 1152
+- n_cells: 32
+- ok: True
+- flagged_rows: 0
+- masked_values: {}
+- issues: []
+
+## Baselines
+
+- pack-median-pack0: kind population, R0(25 C) 0.0011881306080339738, dataset pack early-life median (this data set)

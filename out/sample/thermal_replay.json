@@ -1,0 +1,204 @@
+{
+  "frames": 12,
+  "cell_steps_by_action": {
+    "HOT_WAITING": 111,
+    "BYPASS_HOT": 39,
+    "IN": 227,
+    "BYPASS_SOC_LIMIT": 6,
+    "BYPASS_HOLD": 1
+  },
+  "learned_floors": {
+    "C01": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C02": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C03": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C04": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C05": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C06": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C07": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C08": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C09": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C10": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C11": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C12": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C13": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C14": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C15": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C16": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C17": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C18": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C19": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C20": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C21": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C22": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C23": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C24": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C25": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C26": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C27": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C28": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C29": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C30": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C31": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    },
+    "C32": {
+      "floor_c": 33.34,
+      "source": "ambient sensor (not yet learned)",
+      "tau_s": null,
+      "n_fits": 0
+    }
+  }
+}

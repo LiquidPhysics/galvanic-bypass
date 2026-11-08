@@ -1,0 +1,270 @@
+# celldx default configuration.
+# Every threshold the algorithm uses lives here. Values marked [prototype] reproduce the
+# behaviour specified in the celldx final prompt (sections 6.3 to 6.5). Values marked
+# [default] are choices made where the brief is silent; see docs/DESIGN.md for each.
+# Values under `fixes` are the proposed v3 fixes for the known weaknesses (section 10);
+# they are OFF in the `prototype` profile and ON in the `v3` profile.
+
+profile: prototype            # prototype | v3   (v3 switches on every entry under `fixes`)
+
+physics:
+  rg_j_per_mol_k: 8.314       # [prototype] gas constant
+  t25_k: 298.15               # [prototype] reference temperature
+  soc_ref: 0.5                # [prototype] SOC the resistance is referred to
+  ea_literature_j_per_mol: 30000.0   # [prototype] literature default (typical 25 to 40 kJ/mol)
+  ea_literature_range_j_per_mol: [25000.0, 40000.0]
+  ea_plausible_range_j_per_mol: [3000.0, 120000.0]   # [default] fits outside are rejected
+
+mode:
+  pulse_max_median_dt_s: 0.1  # [default] median sample interval at or below this -> pulse_mode
+
+validation:
+  voltage_range_v: [0.5, 5.0]
+  current_abs_max_a: 5000.0
+  temp_range_c: [-40.0, 95.0]
+  soc_range: [-0.02, 1.02]
+  soh_range: [0.0, 1.3]
+  resistance_range_ohm: [1.0e-6, 5.0]
+  ocv_deviation_abs_max_mv: 500.0
+  gap_factor: 5.0             # gap if dt > gap_factor * median dt
+  outlier_mad_z: 10.0         # resistance outlier if robust z above this (flagged, excluded from features)
+  exclude_flagged_rows: true  # flagged rows are kept in the table but not used by features
+
+pulse:
+  di_min_a: 2.0               # [default] smallest current step treated as a pulse
+  di_min_c_rate: 0.1          # [default] ... or this fraction of capacity, whichever is larger
+  pre_stable_s: 0.05          # stable window before the step
+  stable_rel_di: 0.05         # current must stay within this fraction of the step in both windows
+  t_pre_s: 0.010              # [prototype] V(t0 - 10 ms)
+  t_ohmic_s: 0.010            # [prototype] V(t0 + 10 ms)
+  t_long_s: 1.0               # [prototype] V(t0 + 1 s)
+  bms_disagreement_rel: 0.25  # [default] flag if pulse R and BMS R differ by more than this
+  day_s: 86400.0              # aggregation period for the daily robust medians
+  segment_gap_s: 0.5          # a gap longer than this splits continuous segments
+noise:
+  window_s: 1.0               # rolling window for steady-current voltage noise
+  steady_max_di_a: 0.5        # current range inside a window to count as steady
+  min_windows: 3
+
+windows:
+  raw_recent_frac: 0.03       # [prototype] raw excess uses the last ~3% of samples ...
+  raw_recent_min: 5           # [prototype] ... at least 5
+  corr_recent_frac: 0.07      # [prototype] corrected excess uses the last ~7% ...
+  corr_recent_min: 20         # [prototype] ... at least 20
+  step_win_frac: 0.033        # [prototype] step-detector window ~3.3% of samples ...
+  step_win_min: 5             # [prototype] ... at least 5
+  min_samples: 10             # [default] below this the cell is "insufficient data"
+
+baseline:
+  early_life_frac: 0.10       # [prototype] first 10% of life ...
+  early_life_min: 3           # [prototype] ... at least 3 cycles
+  ea_min_spread_k: 8.0        # [prototype]
+  ea_bootstrap_n: 1000        # [default]
+  ea_ci: [0.025, 0.975]       # [default] bootstrap percentile interval
+  own_ea_extend_frac: 0.5     # [default] own baseline: if early life has < 8 K spread, widen the Ea
+                              # window up to this fraction of history (with a time-trend term)
+  ea_max_rel_ci_width: 1.0    # [default] reject a fit whose 95% CI is wider than this x estimate
+  trust_own: 1.0              # [prototype]
+  trust_population: 0.85      # [prototype]
+  trust_literature: 0.70      # [prototype]
+  population_trust_ea_literature_factor: 0.95  # [default] extra factor when Ea is a literature default
+  capacity_mismatch_rel: 0.25 # [default] warn if target capacity differs from baseline source by more
+  resistance_mismatch_rel: 0.5
+
+features:
+  step_method: window_median  # window_median | cusum
+  step_noise_factor: 1.25     # [prototype] z = |jump| / (1.25 * noise * sqrt(2/win))
+  step_noise_floor_rel: 1.0e-4  # [default] noise floor as fraction of median, avoids divide by zero
+  growth_min_samples: 10
+  tind_window: 365            # [prototype] temperature-independent share uses last 365 samples
+  tind_min_samples: 60        # [prototype]
+  tind_min_spread_k: 8.0      # [prototype]
+  temp_spread_quantiles: [0.05, 0.95]  # [default] robust spread = P95 - P5
+  plating_c_rate: 0.5         # [default] charge C-rate counted as a hard charge
+  plating_temp_c: 10.0        # [default] cell temperature below which a hard charge is a cold charge
+  plating_pre_samples: 30     # [prototype] median R25 after versus the 30 samples before
+  plating_min_events: 1
+  thermal_resistance_k_per_w: 3.0   # [default] cell to pack, used for expected I^2 R heating
+  neighbour_mad_floor: 0.02   # [default] floor on MAD of corrected excess across neighbours
+  neighbour_z: 3.5            # [default]
+  neighbour_min_cells: 3
+  pack_drift_excess: 0.10     # [default] pack-wide drift if the pack median corrected excess is above ...
+  pack_drift_frac: 0.5        # ... and at least this fraction of cells exceed it
+  sensor_temp_cold_offset_k: 3.0   # [default] cell reading colder than pack by more than this = suspicious
+  sensor_temp_abs_disagree_k: 20.0 # [default] implausible cell-pack difference
+  sensor_rest_current_c_rate: 0.02 # at rest a cell should sit near pack temperature
+  sensor_rest_disagree_k: 4.0
+  noise_ratio_reference: neighbours   # neighbours | own_early | floor
+  noise_floor_mv: 0.2
+
+scoring:
+  fault: {c: 0.15, w: 0.04}           # [prototype] on corrected_excess
+  raw: {c: 0.15, w: 0.04}             # [prototype] on raw_excess
+  step_rel: {c: 0.12, w: 0.03}        # [prototype]
+  step_z: {c: 5.0, w: 1.5}            # [prototype]
+  soh_jump: {c: 0.04, w: 0.015}       # [prototype] on -soh_step
+  ocv_jump: {c: 15.0, w: 5.0}         # [prototype] on |ocv_step_mv|
+  ocv_drift: {c: 8.0, w: 3.0}         # [prototype] on |median recent ocv_mv|
+  soh_fall: {c: 0.03, w: 0.012}       # [prototype] on 1 - median recent soh
+  lith_ocv_base: 0.6                  # [prototype] lith = ocv_drift * (0.6 + 0.4 * soh_fall)
+  lith_ocv_soh_gain: 0.4              # [prototype]
+  weak: {c: 0.08, w: 0.03}            # [prototype] on b_rel
+  weak_unavailable: 0.3               # [prototype] neutral value when b_rel unavailable
+  cool: {c: 6.0, w: 1.5}              # [prototype] on cell_minus_pack (K)
+  plat: {c: 0.10, w: 0.03}            # [prototype] on post_cold_charge_rise
+  r2_corrosion: {c: 0.9, w: 0.04}     # [prototype]
+  r2_sei: {c: 0.8, w: 0.07}           # [prototype]
+  sei_weak_damping: 0.5               # [prototype] sei *= (1 - 0.5 * weak)
+  ambiguous_floor: 0.06               # [prototype]
+  noise_boost: {c: 3.0, w: 0.5, gain: 1.0}  # [default] weld score boost from voltage-noise ratio
+  cooling_signal: raw                 # raw | unexplained  ([prototype]=raw: cell minus pack as measured)
+
+confidence:
+  n_full: 150                         # [prototype]
+  spread_full_k: 8.0                  # [prototype]
+  spread_short_factor: 0.85           # [prototype]
+  margin_base: 0.35                   # [prototype]
+  margin_gain: 0.65                   # [prototype]
+  margin_scale: 0.5                   # [prototype]
+  high: 0.70                          # [prototype]
+  medium: 0.45                        # [prototype]
+  sei_corrosion_cap: 0.55             # [prototype]
+  sei_corrosion_gap: 0.3              # [prototype]
+  penalty_no_pack_temp: 0.95          # [default] each penalty multiplies confidence and is reported
+  penalty_no_neighbours: 0.92
+  penalty_cycle_mode: 0.90
+  penalty_sensor_fault: 0.60
+  penalty_chemistry_mismatch: 0.70
+  penalty_tind_unavailable: 1.0       # [prototype] none; v3 fix below
+  bootstrap_n: 200                    # [default]
+  bootstrap_interval: [0.05, 0.95]
+
+fixes:                                # proposed v3 fixes (section 10 known weaknesses)
+  fault_floor: false                  # step- or b_rel-driven floor on the fault score
+  fault_floor_step_gain: 1.0          # fault >= step_score * gain
+  fault_floor_brel: {c: 0.12, w: 0.03, gain: 0.9}   # fault >= sig(b_rel) * gain
+  conflict_penalty: false             # penalise confidence when a temperature-only verdict conflicts with a step / b_rel
+  conflict_penalty_factor: 0.55
+  conflict_step_score: 0.3
+  conflict_weak: 0.5
+  tind_unavailable_penalty: false     # penalise confidence when b_rel cannot be computed
+  tind_unavailable_factor: 0.85
+  bootstrap_width_penalty: false      # penalise confidence by the width of the fault-probability interval
+  bootstrap_width_scale: 0.5          # factor = 1 - width * scale
+  flat_history_corrosion_guard: false # with no b_rel, do not let corrosion win on weak=0.3 alone
+  confidence_calibration: false       # apply a fitted confidence calibrator if one is loaded
+  robust_step_noise: false            # step z uses max(diff-MAD noise, MAD of residual from a rolling median):
+                                      # diff-MAD under-reads AR(1)-correlated noise and inflates z
+  temp_step_guard: false              # discount a resistance step that coincides with a temperature step
+  temp_step_guard_sig: {c: 5.0, w: 1.5}   # on |temperature step| (K) at the resistance step
+  ea_adapt: false                     # if the apparent Ea (last 365 samples) exceeds the baseline Ea,
+  ea_adapt_min_ratio: 1.15            # re-correct with the apparent Ea (upward only: a contact fault lowers
+  ea_adapt_max_ratio: 2.0             # the ratio, so it is never absorbed)
+
+actions:
+  dry_run: true                       # recommend-only by default
+  require_human_confirmation: true
+  # Physical interventions that cannot be undone by software. With Low confidence they are
+  # replaced by `inspect` + `collect_more_data`.
+  irreversible: [flag_for_replacement, replace_cell, rework_weld, clean_and_retorque, permanent_isolation]
+  mapping:                            # [prototype] verdict -> recommended actions (section 8)
+    healthy: [none]
+    temperature_effect: [fix_ventilation_heating_or_cooling, derate]
+    cooling_fault: [check_airflow_or_coolant, derate]          # + bypass only near the temperature limit
+    lithium_plating: [lower_cold_charge_current_or_preheat, move_charge_away]   # + bypass if severe
+    internal_damage: [bypass_immediately, flag_for_replacement, no_charge_transfer]
+    mechanical_weld_or_tab: [rework_weld]                      # + bypass if heating
+    mechanical_contact_corrosion: [clean_and_retorque, derate] # + bypass if still rising
+    sei_growth: [cell_to_cell_transfer, reduce_stress, plan_replacement]
+    ambiguous_ageing: [keep_monitoring]
+  safety_verdicts: [internal_damage]
+  severe_plating_probability: 0.6     # plating is a safety verdict above this probability
+  cooling_bypass_temp_margin_k: 5.0   # cooling fault: bypass only within this margin of the limit
+  temp_limit_c: 55.0
+  bypass_if_heating_k: 3.0            # weld/tab: bypass if cell runs this much hotter than pack
+  corrosion_still_rising_b: 0.0       # corrosion: bypass if growth slope is above this (ohm/sqrt(sample))
+  balancing_margin: 0.05              # raise the bypass threshold by this when active balancing exists
+  active_balancing: true
+  min_string_voltage_v: 0.0           # 0 = derive from n_min_cells * v_nominal
+  v_nominal_cell_v: 3.1               # sodium-ion default (REON); NMC 3.6
+  max_bypassed_per_string: 2
+  switch_response_s: 0.05
+  min_cells_in_string: 1
+  transfer_soc_tolerance: 0.02
+
+# ------------------------------------------------------------------------------------------
+# Hot-cell thermal controller (celldx.thermal). A separate algorithm from the diagnosis
+# above; it shares only this file. Values marked [spec] come from the user's controller
+# description (2026-11-08); [default] are choices where the description is silent.
+thermal:
+  control_period_s: 60.0          # [spec] runs every minute
+  band_edge_c: 30.0               # [spec] between the 25 C rated condition and the 35 C storage ceiling
+  rated_c: 25.0                   # [spec]
+  storage_ceiling_c: 35.0         # [spec]
+  trend_horizon_s: 600.0          # [spec] flag when T + 10 min of heating trend crosses the band edge
+  trend_window_s: 600.0           # [default] heating trend = least-squares slope over the last 10 min
+  trend_min_points: 3             # [default]
+  release_margin_k: 2.0           # [default] switch back on once cooled this far below the band ...
+  release_uses_heating_trend: true  # [addition] "cooled a margin below the band" is judged like the flag: T plus the
+                                  #   heating trend it had when switched off, over the horizon (false = T alone, literal;
+                                  #   then a cell flagged early at 26 C is released the next minute and re-flagged)
+  floor_epsilon_k: 0.5            # [default] ... or once within this of its floor (no heat left to shed)
+  floor_rate_epsilon_k_per_min: 0.02  # [default] ... or cooling slower than this while bypassed
+  min_off_s: 300.0                # [default] minimum dwell before a bypassed cell can be rotated back in
+  require_net_aging_benefit: false # [proposed addition, from the simulation; off = the brief as written] bypass a hot cell only if the heat it stops making
+                                  #   saves more aging than the extra string current adds in the cells that stay in
+  switch_r_ohm: 0.00025           # [default] REON switch-path resistance per slot (Firebreak assumption)
+  request_envelope_s: 600.0       # [addition] new hot bypasses must also pass the limits at the largest charge
+                                  #   and discharge requests of the last 10 min (no churn under regulation)
+  min_on_s: 300.0                 # [addition] after a hot cell is released it is not flagged again for 5 min
+  rearm_margin_k: 1.0             # [addition] a cell is only worth bypassing if it has >= this much heat to shed
+                                  #   (T_pred - floor); after a "no heat left" release it must also warm by this much
+                                  #   before it can be flagged again (prevents on/off chatter in hot air)
+  rotation_quantum_s: 600.0       # [default] off-time unit used to share the bypass slots fairly
+  rotation_memory_s: 21600.0      # [addition] off-time used for turn-taking decays with this time constant (6 h)
+  # floor learning: Newtonian cooling dT/dt = -(T - T_floor)/tau fitted on idle segments
+  idle_current_c_rate: 0.02       # [default] |I| below this x capacity counts as idle (or bypassed)
+  floor_min_idle_points: 10       # [default] idle samples needed for a fit
+  floor_min_drop_k: 0.5           # [default] the idle segment must cool by at least this
+  floor_forgetting: 0.9           # [default] exponential forgetting of the regression sums per idle segment
+  tau_bounds_s: [300.0, 86400.0]  # [default] plausible cooling time constants
+  heat_capacity_j_per_k: 2000.0   # [default] cell heat capacity for the heating prediction (100 Ah prismatic)
+  # aging-rate ranking: rate = arr(T, Ea) * exp(k_soc * (SOC - soc_ref)) / SOH^gamma
+  aging_ea_j_per_mol: 30000.0     # [default] assumption (literature range 25-60 kJ/mol), configurable
+  aging_k_soc: 1.5                # [default] higher charge ages faster
+  aging_soc_ref: 0.5
+  aging_soh_gamma: 1.0            # [default] weaker cells rank higher
+  # limits
+  inverter_v_min: 70.0            # [default] assumed DC window for a 32 x 3.1 V Na-ion string (99 V nominal):
+  inverter_v_max: 130.0           #   ~23 cells needed at 50% SOC, ~28 at 10% SOC (sloping Na-ion OCV); use the datasheet
+  inverter_v_margin_v: 2.0        # [addition] decisions keep the predicted string voltage this far inside the window
+                                  #   (the controller model does not see polarisation or switch resistance)
+  cell_current_max_a: 100.0       # [default] 1C for 100 Ah cells
+  check_energy: true              # [spec] limit 2 (set false only for ablations)
+  check_band_protection: true     # [spec] limit 3 (set false only for ablations)
+  band_protection_on_charge_rules: false  # [default] true = also slow charging so charge-rule bypasses never
+                                  #   push healthy cells above the band (costs stored energy; see DESIGN.md)
+  energy_reserve_factor: 1.1      # [default] active cells must hold 1.1 x the rest of the day's scheduled energy
+  energy_admit_margin: 0.03       # [addition] switching a NEW cell off needs 3% more than the reserve; keeping one off
+                                  #   needs the reserve (hysteresis, so a cell is not switched every minute at the threshold)
+  energy_soc_min: 0.05            # [default] usable energy counts down to this SOC
+  discharge_soc_min: 0.05         # [addition] a cell at or below this SOC is bypassed while discharging (empty)
+  energy_v_end: 2.30              # [default] open-circuit cell voltage at energy_soc_min (Na-ion ~2.3 V at 5%);
+                                  #   the string must keep ceil(v_min / loaded end voltage) cells in at the end
+  energy_eval_c_rate: 0.3         # [default] discharge C-rate assumed for energy estimates when not discharging
+  cap_relax_for_energy: true      # [addition] lift hot-air charge caps (coolest air first) only if they would
+                                  #   leave the pack unable to cover the rest of the day's schedule
+  cap_relax_release_margin: 0.05  # [addition] a lifted cap stays lifted until the projection clears the need by this
+                                  # margin without it (hysteresis: a cap flipping every minute toggles the switch)
+  soc_hysteresis: 0.02            # [addition] SOC rules (empty/full/cap) release only 2 points past their threshold
+  temp_hysteresis_k: 0.5          # [addition] charge temperature rules release 0.5 K inside their window
+  # charging rules
+  charge_min_temp_c: 15.0         # [spec] no cell charges below 15 C
+  charge_max_temp_c: 45.0         # [default] "its charge limit" (datasheet value; per cell override allowed)
+  charge_soc_caps:                # [spec] cells in hot air are charged only to 80% or 70%
+    - {floor_c: 30.0, soc_max: 0.80}
+    - {floor_c: 35.0, soc_max: 0.70}
+  charge_soc_max: 0.95            # [default] "full" for cells not in hot air (keeps a 100 Ah Na-ion cell under its
+                                  #   3.95 V cut-off at 0.2C)
+  hard_cutoff_c: 57.0             # [spec] every cell switches off at 57 C regardless of anything else
+  hard_cutoff_release_c: 50.0     # [addition] a cut-off cell stays latched off until it has cooled to 50 C

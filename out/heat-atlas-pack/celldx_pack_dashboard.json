@@ -1,0 +1,5626 @@
+{
+  "schema": "celldx/v1",
+  "generated_at": "2026-11-08T03:19:38+00:00",
+  "pack_id": "S-12",
+  "t": null,
+  "celldx_version": "3.0.0",
+  "config_hash": "dbc46eb9dc22b53e",
+  "probability_status": "uncalibrated_scores",
+  "faults": [
+    "contact",
+    "weld",
+    "sei",
+    "plating",
+    "short",
+    "cooling",
+    "ageing"
+  ],
+  "fault_labels": {
+    "contact": "Contact corrosion (busbar / terminal)",
+    "weld": "Loose weld or tab",
+    "sei": "SEI growth",
+    "plating": "Lithium plating",
+    "short": "Internal damage (short)",
+    "cooling": "Cooling fault (self-heating)",
+    "ageing": "Ambiguous ageing",
+    "cold": "Temperature effect (cold cell, not a fault)",
+    "healthy": "Healthy",
+    "thermistor": "Temperature sensor suspected"
+  },
+  "n_cells": 32,
+  "n_faults": 1,
+  "cells": [
+    {
+      "id": "C20",
+      "source_id": "C20",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.0,
+      "p_temperature_effect": 0.0,
+      "p_fault": 1.0,
+      "p_fault_ci": [
+        1.0,
+        1.0
+      ],
+      "verdict": "cooling",
+      "verdict_cause": "cooling_fault",
+      "is_fault": true,
+      "confidence": {
+        "value": 0.3158,
+        "level": "Low"
+      },
+      "headline": "Fault probability 100% (interval 100% to 100%), uncalibrated score. Most likely cause: Cooling fault (self-heating). Confidence Low (0.32).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.4198,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 4.5918,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 4.592 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.887,
+              "llr": null,
+              "weight": 0.1964,
+              "note": "cell +3.9 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.887,
+              "llr": null,
+              "weight": null,
+              "note": "+3.9 K not explained by I2R"
+            }
+          ],
+          "action": "check airflow or coolant; derate the cell / string"
+        },
+        {
+          "fault": "contact",
+          "cause": "mechanical_contact_corrosion",
+          "label": "Contact corrosion (busbar / terminal)",
+          "p": 0.3715,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 4.5918,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 4.592 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 1.62645,
+              "llr": null,
+              "weight": 1.0,
+              "note": "corrected R +163% vs baseline at 25 C"
+            },
+            {
+              "signal": "b_rel",
+              "value": 0.033359,
+              "llr": null,
+              "weight": 0.1744,
+              "note": "temperature-independent share b_rel 0.033 of R0"
+            },
+            {
+              "signal": "growth_r2",
+              "value": 0.001196,
+              "llr": null,
+              "weight": 0.0012,
+              "note": "sqrt-time growth fit R2 0.00"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.1282,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 4.5918,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 4.592 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 1.62645,
+              "llr": null,
+              "weight": 1.0,
+              "note": "corrected R +163% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9339,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.934"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": true,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": true
+      },
+      "recommendation": {
+        "cell_id": "C20",
+        "verdict": "cooling_fault",
+        "confidence_level": "Low",
+        "actions": [
+          "check_airflow_or_coolant",
+          "derate"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "check airflow or coolant; derate the cell / string",
+        "evidence": {
+          "fault_probability": 1.0,
+          "fault_probability_interval": [
+            1.0,
+            1.0
+          ],
+          "cause_probabilities": {
+            "healthy": 0.0,
+            "temperature_effect": 0.0,
+            "cooling_fault": 0.41978778411636863,
+            "lithium_plating": 0.07360692990634314,
+            "internal_damage": 0.0004489326402482162,
+            "mechanical_weld_or_tab": 0.006418070810821085,
+            "mechanical_contact_corrosion": 0.37150204955716004,
+            "sei_growth": 2.050624834097113e-05,
+            "ambiguous_ageing": 0.12821572672071793
+          },
+          "confidence": 0.3157701630191329,
+          "confidence_level": "Low",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 1.6264499309777558,
+            "raw_excess": 1.1478245858239315,
+            "step_rel": -0.007058446395910853,
+            "step_z": 3.1466200784707175,
+            "b_rel": 0.033359118979925266,
+            "growth_r2": 0.0011961411968279823,
+            "cell_minus_pack_k": 3.887000000000004,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9339,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C14",
+      "source_id": "C14",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.4046,
+      "p_temperature_effect": 0.0047,
+      "p_fault": 0.5907,
+      "p_fault_ci": [
+        0.5747,
+        0.6107
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.349,
+        "level": "Low"
+      },
+      "headline": "Fault probability 59% (interval 57% to 61%), uncalibrated score, but spread over several causes: no single fault cause is more likely than Healthy. Treat as unresolved; collect more data. Confidence Low (0.35).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.3229,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 2.071,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 2.071 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.768,
+              "llr": null,
+              "weight": 0.1842,
+              "note": "cell +3.8 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.768,
+              "llr": null,
+              "weight": null,
+              "note": "+3.8 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.1052,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 2.071,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 2.071 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.184594,
+              "llr": null,
+              "weight": 0.0112,
+              "note": "corrected R +18% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.8986,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.899"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "contact",
+          "cause": "mechanical_contact_corrosion",
+          "label": "Contact corrosion (busbar / terminal)",
+          "p": 0.0966,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 2.071,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 2.071 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.184594,
+              "llr": null,
+              "weight": 0.0112,
+              "note": "corrected R +18% vs baseline at 25 C"
+            },
+            {
+              "signal": "b_rel",
+              "value": 0.006191,
+              "llr": null,
+              "weight": 0.0787,
+              "note": "temperature-independent share b_rel 0.006 of R0"
+            },
+            {
+              "signal": "growth_r2",
+              "value": 0.000695,
+              "llr": null,
+              "weight": 0.0007,
+              "note": "sqrt-time growth fit R2 0.00"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": true,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C14",
+        "verdict": "healthy",
+        "confidence_level": "Low",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.5906735268939866,
+          "fault_probability_interval": [
+            0.5746621060273572,
+            0.6106663163110063
+          ],
+          "cause_probabilities": {
+            "healthy": 0.40459311829662825,
+            "temperature_effect": 0.004733354809385194,
+            "cooling_fault": 0.32293913717876294,
+            "lithium_plating": 0.06038201383323569,
+            "internal_damage": 0.0003615779101329904,
+            "mechanical_weld_or_tab": 0.005169222334956866,
+            "mechanical_contact_corrosion": 0.09662936768193549,
+            "sei_growth": 1.2929396007397028e-05,
+            "ambiguous_ageing": 0.1051792785589552
+          },
+          "confidence": 0.34895488422171705,
+          "confidence_level": "Low",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.1845942967511045,
+            "raw_excess": -0.0293320047554696,
+            "step_rel": 0.006607440573546439,
+            "step_z": 2.9289189537970617,
+            "b_rel": 0.006190870426869112,
+            "growth_r2": 0.0006949770736610628,
+            "cell_minus_pack_k": 3.7680000000000042,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.8986,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C01",
+      "source_id": "C01",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.6328,
+      "p_temperature_effect": 0.0084,
+      "p_fault": 0.3588,
+      "p_fault_ci": [
+        0.3482,
+        0.3734
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.7378,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 36% (interval 35% to 37%), uncalibrated score. Confidence High (0.74).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1601,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 2.0324,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 2.032 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.574,
+              "llr": null,
+              "weight": 0.0925,
+              "note": "cell +2.6 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.574,
+              "llr": null,
+              "weight": null,
+              "note": "+2.6 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.1039,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 2.0324,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 2.032 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.162533,
+              "llr": null,
+              "weight": 0.0127,
+              "note": "corrected R +16% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9071,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.907"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0597,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 2.0324,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 2.032 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": true,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C01",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.3587786617498986,
+          "fault_probability_interval": [
+            0.3482115817680713,
+            0.37343798046545834
+          ],
+          "cause_probabilities": {
+            "healthy": 0.6328013641906579,
+            "temperature_effect": 0.008419974059443527,
+            "cooling_fault": 0.16013247775766176,
+            "lithium_plating": 0.05965809146866919,
+            "internal_damage": 0.00023562738033327374,
+            "mechanical_weld_or_tab": 0.0033685971488085454,
+            "mechanical_contact_corrosion": 0.0314549146937058,
+            "sei_growth": 1.0673294215943066e-05,
+            "ambiguous_ageing": 0.10391828000650404
+          },
+          "confidence": 0.7378192075576147,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.1625326795647417,
+            "raw_excess": -0.024184089636317574,
+            "step_rel": -0.007866793800612629,
+            "step_z": 3.4251586382634196,
+            "b_rel": -0.022722461993201368,
+            "growth_r2": 0.00035375736121345813,
+            "cell_minus_pack_k": 2.5740000000000016,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9071,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C21",
+      "source_id": "C21",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.6608,
+      "p_temperature_effect": 0.0013,
+      "p_fault": 0.3379,
+      "p_fault_ci": [
+        0.3263,
+        0.3544
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.711,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 34% (interval 33% to 35%), uncalibrated score. Confidence High (0.71).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.2151,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.9231,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.923 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.883,
+              "llr": null,
+              "weight": 0.196,
+              "note": "cell +3.9 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.883,
+              "llr": null,
+              "weight": null,
+              "note": "+3.9 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0658,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.9231,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.923 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.100019,
+              "llr": null,
+              "weight": 0.0019,
+              "note": "corrected R +10% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9001,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.900"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0378,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.9231,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.923 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C21",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.337926304451089,
+          "fault_probability_interval": [
+            0.3262785781861812,
+            0.3543825562728027
+          ],
+          "cause_probabilities": {
+            "healthy": 0.6607980781201104,
+            "temperature_effect": 0.001275617428800621,
+            "cooling_fault": 0.21509121877484094,
+            "lithium_plating": 0.03779570444942187,
+            "internal_damage": 4.305484606394584e-05,
+            "mechanical_weld_or_tab": 0.0006155245264292317,
+            "mechanical_contact_corrosion": 0.018541983741047617,
+            "sei_growth": 2.575261286143376e-06,
+            "ambiguous_ageing": 0.0658362428519993
+          },
+          "confidence": 0.7110054716188704,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.10001859436007665,
+            "raw_excess": -0.10140281642359616,
+            "step_rel": 0.0050582192790556224,
+            "step_z": 2.1079047242544844,
+            "b_rel": 0.005084788322800226,
+            "growth_r2": 0.0008526805317222719,
+            "cell_minus_pack_k": 3.882999999999999,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9001,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C05",
+      "source_id": "C05",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7095,
+      "p_temperature_effect": 0.0017,
+      "p_fault": 0.2888,
+      "p_fault_ci": [
+        0.2774,
+        0.3012
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 29% (interval 28% to 30%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1631,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.9184,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.918 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.382,
+              "llr": null,
+              "weight": 0.1486,
+              "note": "cell +3.4 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.382,
+              "llr": null,
+              "weight": null,
+              "note": "+3.4 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0658,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.9184,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.918 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.097335,
+              "llr": null,
+              "weight": 0.0023,
+              "note": "corrected R +10% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9281,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.928"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0378,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.9184,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.918 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C05",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.2887810687035654,
+          "fault_probability_interval": [
+            0.27737412421006824,
+            0.301215559296092
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7095215793131825,
+            "temperature_effect": 0.0016973519832521012,
+            "cooling_fault": 0.16305497584852965,
+            "lithium_plating": 0.03778648183615726,
+            "internal_damage": 5.660730959584291e-05,
+            "mechanical_weld_or_tab": 0.0008092744630805177,
+            "mechanical_contact_corrosion": 0.021251221419999626,
+            "sei_growth": 2.3298211341153438e-06,
+            "ambiguous_ageing": 0.06582017800506856
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.09733482914115976,
+            "raw_excess": -0.09282295789167638,
+            "step_rel": -0.007897331161652628,
+            "step_z": 3.5004922762904367,
+            "b_rel": 0.01131251078325227,
+            "growth_r2": 8.425975268133712e-05,
+            "cell_minus_pack_k": 3.3820000000000014,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9281,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C13",
+      "source_id": "C13",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7175,
+      "p_temperature_effect": 0.0003,
+      "p_fault": 0.2822,
+      "p_fault_ci": [
+        0.2698,
+        0.2956
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 28% (interval 27% to 30%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1886,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7912,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.791 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.879,
+              "llr": null,
+              "weight": 0.1956,
+              "note": "cell +3.9 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.879,
+              "llr": null,
+              "weight": null,
+              "note": "+3.9 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0579,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7912,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.791 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.024544,
+              "llr": null,
+              "weight": 0.0004,
+              "note": "corrected R +2% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.911,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.911"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0332,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7912,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.791 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C13",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.282213012695675,
+          "fault_probability_interval": [
+            0.2697996807729219,
+            0.2956420160215443
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7174870967836884,
+            "temperature_effect": 0.00029989052063661583,
+            "cooling_fault": 0.18861976188314958,
+            "lithium_plating": 0.03321530916001241,
+            "internal_damage": 7.278134379438039e-06,
+            "mechanical_weld_or_tab": 0.0001040503131874708,
+            "mechanical_contact_corrosion": 0.0024085298521674824,
+            "sei_growth": 4.195754264279456e-07,
+            "ambiguous_ageing": 0.0578576637773519
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.024544367156137614,
+            "raw_excess": -0.16260580728462426,
+            "step_rel": -0.006487632934452451,
+            "step_z": 2.832168854762094,
+            "b_rel": -0.0024592189543439008,
+            "growth_r2": 3.1420180217400784e-05,
+            "cell_minus_pack_k": 3.8790000000000013,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.911,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C11",
+      "source_id": "C11",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7257,
+      "p_temperature_effect": 0.0006,
+      "p_fault": 0.2737,
+      "p_fault_ci": [
+        0.2617,
+        0.2862
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 27% (interval 26% to 29%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1749,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8406,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.841 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.685,
+              "llr": null,
+              "weight": 0.1761,
+              "note": "cell +3.7 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.685,
+              "llr": null,
+              "weight": null,
+              "note": "+3.7 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0596,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8406,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.841 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.052822,
+              "llr": null,
+              "weight": 0.0008,
+              "note": "corrected R +5% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9079,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.908"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0342,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8406,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.841 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C11",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.2736806658187013,
+          "fault_probability_interval": [
+            0.26168705849161594,
+            0.28623465222950856
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7256992926538735,
+            "temperature_effect": 0.0006200415274252209,
+            "cooling_fault": 0.17487993805699226,
+            "lithium_plating": 0.034216027537430374,
+            "internal_damage": 2.116415150232518e-05,
+            "mechanical_weld_or_tab": 0.0003025688284054529,
+            "mechanical_contact_corrosion": 0.004659272433880533,
+            "sei_growth": 8.821996430086338e-07,
+            "ambiguous_ageing": 0.05960081261084733
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.05282234863932134,
+            "raw_excess": -0.13400627884489158,
+            "step_rel": 0.006447055823279452,
+            "step_z": 2.738833237142189,
+            "b_rel": -0.0035317322138756443,
+            "growth_r2": 0.0033225158821954537,
+            "cell_minus_pack_k": 3.6849999999999987,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9079,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C12",
+      "source_id": "C12",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7326,
+      "p_temperature_effect": 0.0,
+      "p_fault": 0.2674,
+      "p_fault_ci": [
+        0.2558,
+        0.2784
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 27% (interval 26% to 28%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1787,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.5112,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.511 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.83,
+              "llr": null,
+              "weight": 0.1905,
+              "note": "cell +3.8 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.83,
+              "llr": null,
+              "weight": null,
+              "note": "+3.8 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0563,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.5112,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.511 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.13562,
+              "llr": null,
+              "weight": 0.0,
+              "note": "corrected R -14% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9163,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.916"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0323,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.5112,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.511 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C12",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.26736585761016374,
+          "fault_probability_interval": [
+            0.255824550761903,
+            0.2784066695348556
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7326227226021961,
+            "temperature_effect": 1.1419787640172141e-05,
+            "cooling_fault": 0.17872060199565884,
+            "lithium_plating": 0.03231274646425068,
+            "internal_damage": 1.1064244732433941e-07,
+            "mechanical_weld_or_tab": 1.5817764135339657e-06,
+            "mechanical_contact_corrosion": 4.5316921991146425e-05,
+            "sei_growth": 7.72967900668533e-09,
+            "ambiguous_ageing": 0.05628549207972309
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.13562023015522573,
+            "raw_excess": -0.294163638107395,
+            "step_rel": -0.005824939063825833,
+            "step_z": 2.4371913590231675,
+            "b_rel": -0.0019371483393803574,
+            "growth_r2": 1.7588416304392673e-05,
+            "cell_minus_pack_k": 3.830000000000002,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9163,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C22",
+      "source_id": "C22",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7375,
+      "p_temperature_effect": 0.0002,
+      "p_fault": 0.2623,
+      "p_fault_ci": [
+        0.2517,
+        0.2757
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 26% (interval 25% to 28%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.171,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7433,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.743 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.722,
+              "llr": null,
+              "weight": 0.1797,
+              "note": "cell +3.7 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.722,
+              "llr": null,
+              "weight": null,
+              "note": "+3.7 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0571,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7433,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.743 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.002872,
+              "llr": null,
+              "weight": 0.0002,
+              "note": "corrected R -0% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9171,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.917"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0328,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7433,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.743 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C22",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.26234313740112475,
+          "fault_probability_interval": [
+            0.2516529294244913,
+            0.2756918235858949
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7374699957791861,
+            "temperature_effect": 0.00018686681968908117,
+            "cooling_fault": 0.17097338695728245,
+            "lithium_plating": 0.03278013571123048,
+            "internal_damage": 3.5465370454225994e-06,
+            "mechanical_weld_or_tab": 5.104146358606287e-05,
+            "mechanical_contact_corrosion": 0.001435179275596982,
+            "sei_growth": 2.1121877700264647e-07,
+            "ambiguous_ageing": 0.05709963623760625
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.002872236939152062,
+            "raw_excess": -0.18262547719243727,
+            "step_rel": -0.006173592602583105,
+            "step_z": 2.7487288511851915,
+            "b_rel": 0.002672987053672719,
+            "growth_r2": 0.00013548166017729457,
+            "cell_minus_pack_k": 3.722000000000005,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9171,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C19",
+      "source_id": "C19",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7379,
+      "p_temperature_effect": 0.0002,
+      "p_fault": 0.2619,
+      "p_fault_ci": [
+        0.2513,
+        0.2737
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 26% (interval 25% to 27%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1702,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7488,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.749 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.712,
+              "llr": null,
+              "weight": 0.1787,
+              "note": "cell +3.7 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.712,
+              "llr": null,
+              "weight": null,
+              "note": "+3.7 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0572,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7488,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.749 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.000295,
+              "llr": null,
+              "weight": 0.0003,
+              "note": "corrected R +0% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9104,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.910"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0328,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7488,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.749 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C19",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.26188612700352787,
+          "fault_probability_interval": [
+            0.25130690719876864,
+            0.27366111383396635
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7379158863344149,
+            "temperature_effect": 0.00019798666205725514,
+            "cooling_fault": 0.17024241103782106,
+            "lithium_plating": 0.032819090941062126,
+            "internal_damage": 5.5985869409946646e-06,
+            "mechanical_weld_or_tab": 8.003901745254089e-05,
+            "mechanical_contact_corrosion": 0.0015712663241206006,
+            "sei_growth": 2.2884131509925168e-07,
+            "ambiguous_ageing": 0.05716749225481539
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.0002947903463854651,
+            "raw_excess": -0.18033751491725858,
+            "step_rel": 0.006047480254222139,
+            "step_z": 2.696978566382495,
+            "b_rel": 0.0030993349091631723,
+            "growth_r2": 4.176461017024735e-07,
+            "cell_minus_pack_k": 3.7119999999999997,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9104,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C06",
+      "source_id": "C06",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7531,
+      "p_temperature_effect": 0.0008,
+      "p_fault": 0.2461,
+      "p_fault_ci": [
+        0.2372,
+        0.255
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 25% (interval 24% to 25%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1449,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8479,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.848 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.334,
+              "llr": null,
+              "weight": 0.1446,
+              "note": "cell +3.3 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.334,
+              "llr": null,
+              "weight": null,
+              "note": "+3.3 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0601,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8479,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.848 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.056955,
+              "llr": null,
+              "weight": 0.0011,
+              "note": "corrected R +6% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.8975,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.897"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0345,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8479,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.848 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C06",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.24612372775561184,
+          "fault_probability_interval": [
+            0.23723231521178695,
+            0.2549615344067276
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7530557951136213,
+            "temperature_effect": 0.0008204771307668683,
+            "cooling_fault": 0.14490862534073826,
+            "lithium_plating": 0.03451090287520674,
+            "internal_damage": 1.8035816101321195e-05,
+            "mechanical_weld_or_tab": 0.00025784524111507244,
+            "mechanical_contact_corrosion": 0.006312930439416346,
+            "sei_growth": 9.328203685996801e-07,
+            "ambiguous_ageing": 0.06011445522266554
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.05695526114346117,
+            "raw_excess": -0.1242824391753824,
+            "step_rel": -0.006996850256098948,
+            "step_z": 3.0700780394134983,
+            "b_rel": 0.002870878388164177,
+            "growth_r2": 0.00017993778743952138,
+            "cell_minus_pack_k": 3.3339999999999996,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.8975,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C04",
+      "source_id": "C04",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7533,
+      "p_temperature_effect": 0.0008,
+      "p_fault": 0.2459,
+      "p_fault_ci": [
+        0.2377,
+        0.2565
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 25% (interval 24% to 26%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1451,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8443,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.844 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.342,
+              "llr": null,
+              "weight": 0.1453,
+              "note": "cell +3.3 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.342,
+              "llr": null,
+              "weight": null,
+              "note": "+3.3 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0599,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8443,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.844 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.054894,
+              "llr": null,
+              "weight": 0.001,
+              "note": "corrected R +5% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.8956,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.896"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0344,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8443,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.844 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C04",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.24592286539333655,
+          "fault_probability_interval": [
+            0.23768663190752506,
+            0.25646830489114264
+          ],
+          "cause_probabilities": {
+            "healthy": 0.753290865701802,
+            "temperature_effect": 0.0007862689048614197,
+            "cooling_fault": 0.14507125075654015,
+            "lithium_plating": 0.034392438698439366,
+            "internal_damage": 2.0646502555179602e-05,
+            "mechanical_weld_or_tab": 0.0002951683694054315,
+            "mechanical_contact_corrosion": 0.006234374257510903,
+            "sei_growth": 8.840388209439722e-07,
+            "ambiguous_ageing": 0.059908102770064586
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.05489381953644479,
+            "raw_excess": -0.12599841088176633,
+            "step_rel": 0.005976601642397525,
+            "step_z": 2.6258807581166743,
+            "b_rel": 0.004119505230917651,
+            "growth_r2": 7.632758415054841e-05,
+            "cell_minus_pack_k": 3.3420000000000023,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.8956,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C30",
+      "source_id": "C30",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.76,
+      "p_temperature_effect": 0.001,
+      "p_fault": 0.239,
+      "p_fault_ci": [
+        0.2314,
+        0.2483
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 24% (interval 23% to 25%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1358,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8544,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.854 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.209,
+              "llr": null,
+              "weight": 0.1346,
+              "note": "cell +3.2 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.209,
+              "llr": null,
+              "weight": null,
+              "note": "+3.2 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0605,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8544,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.854 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.06072,
+              "llr": null,
+              "weight": 0.0012,
+              "note": "corrected R +6% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.915,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.915"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0347,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.8544,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.854 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C30",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.2389953204832308,
+          "fault_probability_interval": [
+            0.23141557428033185,
+            0.24829946658324953
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7600492818740543,
+            "temperature_effect": 0.0009553976427148944,
+            "cooling_fault": 0.13576404729346073,
+            "lithium_plating": 0.03473653837755838,
+            "internal_damage": 3.4282385201519595e-05,
+            "mechanical_weld_or_tab": 0.0004901108898331514,
+            "mechanical_contact_corrosion": 0.007461844124363082,
+            "sei_growth": 1.0082741186786812e-06,
+            "ambiguous_ageing": 0.06050748913869518
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.06071980599940763,
+            "raw_excess": -0.11856253348743584,
+            "step_rel": 0.007208930951847015,
+            "step_z": 3.2357355627241176,
+            "b_rel": 0.005384406464967477,
+            "growth_r2": 0.00010612521392860952,
+            "cell_minus_pack_k": 3.2089999999999996,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.915,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C18",
+      "source_id": "C18",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7623,
+      "p_temperature_effect": 0.0004,
+      "p_fault": 0.2373,
+      "p_fault_ci": [
+        0.2284,
+        0.2474
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 24% (interval 23% to 25%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.143,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7952,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.795 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.369,
+              "llr": null,
+              "weight": 0.1475,
+              "note": "cell +3.4 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.369,
+              "llr": null,
+              "weight": null,
+              "note": "+3.4 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0582,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7952,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.795 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.026861,
+              "llr": null,
+              "weight": 0.0005,
+              "note": "corrected R +3% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9142,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.914"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0334,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7952,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.795 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C18",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.23726461401490312,
+          "fault_probability_interval": [
+            0.22835451039792923,
+            0.24736561486045502
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7623172858808004,
+            "temperature_effect": 0.00041810010429650635,
+            "cooling_fault": 0.14301448461237362,
+            "lithium_plating": 0.0333878858952934,
+            "internal_damage": 1.04602011610732e-05,
+            "mechanical_weld_or_tab": 0.0001495420598290257,
+            "mechanical_contact_corrosion": 0.0025435189210884766,
+            "sei_growth": 4.4756515362186943e-07,
+            "ambiguous_ageing": 0.058158274760003875
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.026860770467045603,
+            "raw_excess": -0.1517379864775259,
+            "step_rel": 0.006013308710491099,
+            "step_z": 2.6359978374901907,
+            "b_rel": -0.0026219912171569775,
+            "growth_r2": 0.0005220055964103576,
+            "cell_minus_pack_k": 3.3690000000000033,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9142,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C29",
+      "source_id": "C29",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.763,
+      "p_temperature_effect": 0.0002,
+      "p_fault": 0.2368,
+      "p_fault_ci": [
+        0.2291,
+        0.2476
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 24% (interval 23% to 25%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1452,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7366,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.737 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.429,
+              "llr": null,
+              "weight": 0.1526,
+              "note": "cell +3.4 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.429,
+              "llr": null,
+              "weight": null,
+              "note": "+3.4 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0571,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7366,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.737 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.006654,
+              "llr": null,
+              "weight": 0.0003,
+              "note": "corrected R -1% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9112,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.911"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0328,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7366,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.737 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C29",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.23678925262842365,
+          "fault_probability_interval": [
+            0.2291286040793587,
+            0.24761485645162276
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7630030812394786,
+            "temperature_effect": 0.000207666132097779,
+            "cooling_fault": 0.1452265563304314,
+            "lithium_plating": 0.03277105003930928,
+            "internal_damage": 5.259212773593157e-06,
+            "mechanical_weld_or_tab": 7.518722624274592e-05,
+            "mechanical_contact_corrosion": 0.0016271987480681207,
+            "sei_growth": 1.9114314003347547e-07,
+            "ambiguous_ageing": 0.057083809928458386
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.006654469449149603,
+            "raw_excess": -0.17976552434846393,
+            "step_rel": 0.00675687434254597,
+            "step_z": 2.854985935808177,
+            "b_rel": 0.00984323407002121,
+            "growth_r2": 6.91830633678947e-05,
+            "cell_minus_pack_k": 3.4289999999999985,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9112,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C15",
+      "source_id": "C15",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7633,
+      "p_temperature_effect": 0.0002,
+      "p_fault": 0.2365,
+      "p_fault_ci": [
+        0.2291,
+        0.2458
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 24% (interval 23% to 25%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.145,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7372,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.737 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.426,
+              "llr": null,
+              "weight": 0.1524,
+              "note": "cell +3.4 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.426,
+              "llr": null,
+              "weight": null,
+              "note": "+3.4 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0571,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7372,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.737 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.006316,
+              "llr": null,
+              "weight": 0.0003,
+              "note": "corrected R -1% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.928,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.928"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0328,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7372,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.737 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C15",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.23651798019075973,
+          "fault_probability_interval": [
+            0.22912250736900902,
+            0.24581146139958632
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7632712887174914,
+            "temperature_effect": 0.00021073109174887255,
+            "cooling_fault": 0.1450119558237751,
+            "lithium_plating": 0.03277813524448142,
+            "internal_damage": 3.0644607156544227e-06,
+            "mechanical_weld_or_tab": 4.3810416322536127e-05,
+            "mechanical_contact_corrosion": 0.0015846734808341804,
+            "sei_growth": 1.891350408606554e-07,
+            "ambiguous_ageing": 0.05709615162958989
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.006315846729400887,
+            "raw_excess": -0.1791935337796693,
+            "step_rel": -0.006435841396347238,
+            "step_z": 2.640582789926467,
+            "b_rel": 0.008633792939245913,
+            "growth_r2": 5.2159032497001157e-05,
+            "cell_minus_pack_k": 3.4259999999999984,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.928,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C10",
+      "source_id": "C10",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.766,
+      "p_temperature_effect": 0.0003,
+      "p_fault": 0.2337,
+      "p_fault_ci": [
+        0.2255,
+        0.2425
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 23% (interval 23% to 24%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1414,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7624,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.762 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.37,
+              "llr": null,
+              "weight": 0.1476,
+              "note": "cell +3.4 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.37,
+              "llr": null,
+              "weight": null,
+              "note": "+3.4 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0575,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7624,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.762 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.008069,
+              "llr": null,
+              "weight": 0.0004,
+              "note": "corrected R +1% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9075,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.907"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.033,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7624,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.762 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C10",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.23371683245383465,
+          "fault_probability_interval": [
+            0.22549494866140515,
+            0.24249708130599076
+          ],
+          "cause_probabilities": {
+            "healthy": 0.765989328496944,
+            "temperature_effect": 0.0002938390492213351,
+            "cooling_fault": 0.14140467818124144,
+            "lithium_plating": 0.032993308940086605,
+            "internal_damage": 5.672705932305489e-06,
+            "mechanical_weld_or_tab": 8.109864398002279e-05,
+            "mechanical_contact_corrosion": 0.0017608181930888755,
+            "sei_growth": 2.936388368129717e-07,
+            "ambiguous_ageing": 0.05747096215066861
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.008069233904667739,
+            "raw_excess": -0.16603775069739213,
+            "step_rel": -0.0069625969409688356,
+            "step_z": 3.155756133575264,
+            "b_rel": 0.0004754803786245514,
+            "growth_r2": 0.0034716319724816813,
+            "cell_minus_pack_k": 3.370000000000001,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9075,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C23",
+      "source_id": "C23",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7665,
+      "p_temperature_effect": 0.0002,
+      "p_fault": 0.2334,
+      "p_fault_ci": [
+        0.225,
+        0.2426
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 23% (interval 22% to 24%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1431,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.71,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.710 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.41,
+              "llr": null,
+              "weight": 0.151,
+              "note": "cell +3.4 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.41,
+              "llr": null,
+              "weight": null,
+              "note": "+3.4 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0569,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.71,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.710 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.021876,
+              "llr": null,
+              "weight": 0.0002,
+              "note": "corrected R -2% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9192,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.919"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0327,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.71,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.710 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C23",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.23337883165786436,
+          "fault_probability_interval": [
+            0.22496149352626124,
+            0.24258802496932913
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7664575800350598,
+            "temperature_effect": 0.00016358830707582207,
+            "cooling_fault": 0.14314958851726942,
+            "lithium_plating": 0.032651284057578334,
+            "internal_damage": 1.8871604740980886e-06,
+            "mechanical_weld_or_tab": 2.6979391713303785e-05,
+            "mechanical_contact_corrosion": 0.0006737700793617801,
+            "sei_growth": 1.325864132120668e-07,
+            "ambiguous_ageing": 0.05687518986505413
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.021875706140990436,
+            "raw_excess": -0.189489364017973,
+            "step_rel": -0.00561079128014716,
+            "step_z": 2.416280016579241,
+            "b_rel": -0.0064582461547458446,
+            "growth_r2": 2.2449033942884e-07,
+            "cell_minus_pack_k": 3.41,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9192,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C28",
+      "source_id": "C28",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.767,
+      "p_temperature_effect": 0.0001,
+      "p_fault": 0.2329,
+      "p_fault_ci": [
+        0.2253,
+        0.2435
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 23% (interval 23% to 24%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.143,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6788,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.679 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.415,
+              "llr": null,
+              "weight": 0.1514,
+              "note": "cell +3.4 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.415,
+              "llr": null,
+              "weight": null,
+              "note": "+3.4 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0567,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6788,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.679 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.039756,
+              "llr": null,
+              "weight": 0.0001,
+              "note": "corrected R -4% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.916,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.916"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0325,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6788,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.679 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C28",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.2329031962678929,
+          "fault_probability_interval": [
+            0.22527507227960655,
+            0.2435466652099012
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7669855350425752,
+            "temperature_effect": 0.0001112686895319173,
+            "cooling_fault": 0.143021365448365,
+            "lithium_plating": 0.03252987229299557,
+            "internal_damage": 1.2776442293317192e-06,
+            "mechanical_weld_or_tab": 1.826557126778342e-05,
+            "mechanical_contact_corrosion": 0.0006686282663153039,
+            "sei_growth": 8.402809487652656e-08,
+            "ambiguous_ageing": 0.056663703016625176
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.03975612882358148,
+            "raw_excess": -0.20493310937542886,
+            "step_rel": -0.0058995138995865315,
+            "step_z": 2.532436413039817,
+            "b_rel": 0.0076316003624591275,
+            "growth_r2": 0.00011809955522967819,
+            "cell_minus_pack_k": 3.4150000000000027,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.916,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C03",
+      "source_id": "C03",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7801,
+      "p_temperature_effect": 0.0001,
+      "p_fault": 0.2198,
+      "p_fault_ci": [
+        0.2122,
+        0.2291
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 22% (interval 21% to 23%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1307,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6139,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.614 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.262,
+              "llr": null,
+              "weight": 0.1388,
+              "note": "cell +3.3 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.262,
+              "llr": null,
+              "weight": null,
+              "note": "+3.3 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0565,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6139,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.614 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.076888,
+              "llr": null,
+              "weight": 0.0001,
+              "note": "corrected R -8% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9379,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.938"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0324,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6139,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.614 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C03",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.21982030584533221,
+          "fault_probability_interval": [
+            0.21220642342258028,
+            0.22914379036550625
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7801235319623835,
+            "temperature_effect": 5.616219228429533e-05,
+            "cooling_fault": 0.13067003038479394,
+            "lithium_plating": 0.0324287622754149,
+            "internal_damage": 1.3407868412658105e-06,
+            "mechanical_weld_or_tab": 1.9296491720978615e-05,
+            "mechanical_contact_corrosion": 0.0002132641870838724,
+            "sei_growth": 3.198906111444211e-08,
+            "ambiguous_ageing": 0.056487579730416314
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.07688757952540426,
+            "raw_excess": -0.2329606472463669,
+            "step_rel": 0.007874515634955507,
+            "step_z": 3.545010821158894,
+            "b_rel": 0.000745781055177764,
+            "growth_r2": 0.0009465416086452683,
+            "cell_minus_pack_k": 3.262000000000004,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9379,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C27",
+      "source_id": "C27",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7804,
+      "p_temperature_effect": 0.0002,
+      "p_fault": 0.2194,
+      "p_fault_ci": [
+        0.2121,
+        0.2273
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 22% (interval 21% to 23%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.129,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.708,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.708 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.227,
+              "llr": null,
+              "weight": 0.136,
+              "note": "cell +3.2 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.227,
+              "llr": null,
+              "weight": null,
+              "note": "+3.2 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0569,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.708,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.708 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.023026,
+              "llr": null,
+              "weight": 0.0002,
+              "note": "corrected R -2% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9142,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.914"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0327,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.708,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.708 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C27",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.21939583499739218,
+          "fault_probability_interval": [
+            0.2121050341944621,
+            0.2273480994023561
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7804327612823524,
+            "temperature_effect": 0.0001714037202554205,
+            "cooling_fault": 0.12897062534093648,
+            "lithium_plating": 0.0326577523157038,
+            "internal_damage": 5.02816142200535e-06,
+            "mechanical_weld_or_tab": 7.188404932380644e-05,
+            "mechanical_contact_corrosion": 0.0008039599152370267,
+            "sei_growth": 1.283070978169508e-07,
+            "ambiguous_ageing": 0.0568864569076713
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.023025918201917683,
+            "raw_excess": -0.18834538288038383,
+            "step_rel": 0.007838740025411673,
+            "step_z": 3.4891447415855548,
+            "b_rel": 0.00019862369780014155,
+            "growth_r2": 5.597612607732838e-05,
+            "cell_minus_pack_k": 3.2270000000000003,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9142,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C24",
+      "source_id": "C24",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7903,
+      "p_temperature_effect": 0.001,
+      "p_fault": 0.2087,
+      "p_fault_ci": [
+        0.2028,
+        0.2156
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 21% (interval 20% to 22%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1082,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.842,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.842 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.834,
+              "llr": null,
+              "weight": 0.1081,
+              "note": "cell +2.8 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.834,
+              "llr": null,
+              "weight": null,
+              "note": "+2.8 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0601,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.842,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.842 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.053588,
+              "llr": null,
+              "weight": 0.0012,
+              "note": "corrected R +5% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9082,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.908"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0345,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.842,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.842 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C24",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.2087247882440394,
+          "fault_probability_interval": [
+            0.2027812288976774,
+            0.21557954008903352
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7902675219736282,
+            "temperature_effect": 0.0010076897823324495,
+            "cooling_fault": 0.10819892638249959,
+            "lithium_plating": 0.034488077989480614,
+            "internal_damage": 1.3646774079215121e-05,
+            "mechanical_weld_or_tab": 0.0001950982275007994,
+            "mechanical_contact_corrosion": 0.005753473323369445,
+            "sei_growth": 8.689356839090666e-07,
+            "ambiguous_ageing": 0.06007469661142586
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.05358810605971698,
+            "raw_excess": -0.1179905429186412,
+            "step_rel": -0.006378671654540313,
+            "step_z": 2.6576294665596065,
+            "b_rel": 0.002363161297443071,
+            "growth_r2": 0.0008067823815895991,
+            "cell_minus_pack_k": 2.8339999999999996,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9082,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C07",
+      "source_id": "C07",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7923,
+      "p_temperature_effect": 0.0003,
+      "p_fault": 0.2073,
+      "p_fault_ci": [
+        0.2019,
+        0.2151
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 21% (interval 20% to 22%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1155,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7473,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.747 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 3.024,
+              "llr": null,
+              "weight": 0.1209,
+              "note": "cell +3.0 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 3.024,
+              "llr": null,
+              "weight": null,
+              "note": "+3.0 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0573,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7473,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.747 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.000543,
+              "llr": null,
+              "weight": 0.0004,
+              "note": "corrected R -0% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9326,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.933"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0329,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7473,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.747 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C07",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.20734640298728793,
+          "fault_probability_interval": [
+            0.20190148668900532,
+            0.21506365458364068
+          ],
+          "cause_probabilities": {
+            "healthy": 0.7923271273281022,
+            "temperature_effect": 0.00032646968460990514,
+            "cooling_fault": 0.11551038029220484,
+            "lithium_plating": 0.03291154147083467,
+            "internal_damage": 4.156913443129371e-06,
+            "mechanical_weld_or_tab": 5.942843634115686e-05,
+            "mechanical_contact_corrosion": 0.0015321470925841261,
+            "sei_growth": 2.171809652527499e-07,
+            "ambiguous_ageing": 0.05732853160091479
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.0005425358411766945,
+            "raw_excess": -0.1631777978534189,
+            "step_rel": -0.006885170136074989,
+            "step_z": 2.962519234134835,
+            "b_rel": 0.0028240292669032816,
+            "growth_r2": 3.436858715966107e-05,
+            "cell_minus_pack_k": 3.0240000000000045,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9326,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "source_id": "C02",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.7987,
+      "p_temperature_effect": 0.0001,
+      "p_fault": 0.2012,
+      "p_fault_ci": [
+        0.1952,
+        0.2078
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 20% (interval 20% to 21%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1119,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6441,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.644 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.991,
+              "llr": null,
+              "weight": 0.1186,
+              "note": "cell +3.0 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.991,
+              "llr": null,
+              "weight": null,
+              "note": "+3.0 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0566,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6441,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.644 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.059611,
+              "llr": null,
+              "weight": 0.0001,
+              "note": "corrected R -6% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9175,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.917"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0325,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6441,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.644 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C02",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.2011999518001788,
+          "fault_probability_interval": [
+            0.1952323599797238,
+            0.20775813640486798
+          ],
+          "cause_probabilities": {
+            "healthy": 0.798707874116628,
+            "temperature_effect": 9.217408319317368e-05,
+            "cooling_fault": 0.1118819033849677,
+            "lithium_plating": 0.03250106350501873,
+            "internal_damage": 9.38794422979796e-07,
+            "mechanical_weld_or_tab": 1.3421276475145401e-05,
+            "mechanical_contact_corrosion": 0.00018905104313986264,
+            "sei_growth": 5.273510170073911e-08,
+            "ambiguous_ageing": 0.0566135210610526
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.05961124737311041,
+            "raw_excess": -0.21408495847614328,
+            "step_rel": -0.006624998399571096,
+            "step_z": 2.9157870041759404,
+            "b_rel": -0.016842118612228542,
+            "growth_r2": 0.0006235027001210147,
+            "cell_minus_pack_k": 2.991000000000003,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9175,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C16",
+      "source_id": "C16",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.8008,
+      "p_temperature_effect": 0.0003,
+      "p_fault": 0.1989,
+      "p_fault_ci": [
+        0.1928,
+        0.2046
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 20% (interval 19% to 20%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1069,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7518,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.752 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.889,
+              "llr": null,
+              "weight": 0.1116,
+              "note": "cell +2.9 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.889,
+              "llr": null,
+              "weight": null,
+              "note": "+2.9 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0574,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7518,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.752 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.002027,
+              "llr": null,
+              "weight": 0.0004,
+              "note": "corrected R +0% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9133,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.913"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.033,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7518,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.752 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C16",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.19888709525927895,
+          "fault_probability_interval": [
+            0.19284041031281643,
+            0.20463146407447708
+          ],
+          "cause_probabilities": {
+            "healthy": 0.800778200754245,
+            "temperature_effect": 0.0003347039864760709,
+            "cooling_fault": 0.10685569885357171,
+            "lithium_plating": 0.03296619629357275,
+            "internal_damage": 6.273176524766672e-06,
+            "mechanical_weld_or_tab": 8.968314516510211e-05,
+            "mechanical_contact_corrosion": 0.0015452690534424115,
+            "sei_growth": 2.400373427642499e-07,
+            "ambiguous_ageing": 0.05742373469965932
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.002027433589126826,
+            "raw_excess": -0.16260580728462426,
+            "step_rel": 0.006747484631611254,
+            "step_z": 2.7779279901661016,
+            "b_rel": 0.0010628169781675813,
+            "growth_r2": 6.289293140093744e-05,
+            "cell_minus_pack_k": 2.8889999999999993,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9133,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C26",
+      "source_id": "C26",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.8012,
+      "p_temperature_effect": 0.0002,
+      "p_fault": 0.1986,
+      "p_fault_ci": [
+        0.1923,
+        0.2048
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 20% (interval 19% to 20%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1079,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7042,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.704 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.921,
+              "llr": null,
+              "weight": 0.1138,
+              "note": "cell +2.9 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.921,
+              "llr": null,
+              "weight": null,
+              "note": "+2.9 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0569,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7042,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.704 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.025201,
+              "llr": null,
+              "weight": 0.0002,
+              "note": "corrected R -3% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9132,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.913"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0327,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7042,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.704 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C26",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.1985888805799369,
+          "fault_probability_interval": [
+            0.19233728175443868,
+            0.20482956523351437
+          ],
+          "cause_probabilities": {
+            "healthy": 0.8012051788572513,
+            "temperature_effect": 0.00020594056281181757,
+            "cooling_fault": 0.10789927833488966,
+            "lithium_plating": 0.03266397444854517,
+            "internal_damage": 2.578534288927382e-06,
+            "mechanical_weld_or_tab": 3.711004913470989e-05,
+            "mechanical_contact_corrosion": 0.0010885235436938897,
+            "sei_growth": 1.2044411138999996e-07,
+            "ambiguous_ageing": 0.056897295225272974
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.025201139119946703,
+            "raw_excess": -0.1820534866236425,
+            "step_rel": -0.006999745100893659,
+            "step_z": 3.243344076892386,
+            "b_rel": 0.011712886396707724,
+            "growth_r2": 0.00013273342888386885,
+            "cell_minus_pack_k": 2.921000000000003,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9132,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C31",
+      "source_id": "C31",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.8017,
+      "p_temperature_effect": 0.0001,
+      "p_fault": 0.1982,
+      "p_fault_ci": [
+        0.1919,
+        0.2037
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 20% (interval 19% to 20%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1089,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6298,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.630 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.947,
+              "llr": null,
+              "weight": 0.1155,
+              "note": "cell +2.9 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.947,
+              "llr": null,
+              "weight": null,
+              "note": "+2.9 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0566,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6298,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.630 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.067743,
+              "llr": null,
+              "weight": 0.0001,
+              "note": "corrected R -7% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9124,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.912"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0325,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6298,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.630 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C31",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.1982348729032819,
+          "fault_probability_interval": [
+            0.191893087800368,
+            0.20370567326176542
+          ],
+          "cause_probabilities": {
+            "healthy": 0.8016871975581817,
+            "temperature_effect": 7.792953853635029e-05,
+            "cooling_fault": 0.10894531617765364,
+            "lithium_plating": 0.032478384711418375,
+            "internal_damage": 1.3617608418404227e-06,
+            "mechanical_weld_or_tab": 1.9468126678209284e-05,
+            "mechanical_contact_corrosion": 0.00021628213592970896,
+            "sei_growth": 4.306343925183986e-08,
+            "ambiguous_ageing": 0.05657401692732065
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.06774343248410908,
+            "raw_excess": -0.22094884530167924,
+            "step_rel": 0.007370747827431198,
+            "step_z": 3.138440005753038,
+            "b_rel": -0.006161415547844716,
+            "growth_r2": 0.0010617616991783763,
+            "cell_minus_pack_k": 2.946999999999999,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9124,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C09",
+      "source_id": "C09",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.8045,
+      "p_temperature_effect": 0.0003,
+      "p_fault": 0.1952,
+      "p_fault_ci": [
+        0.1898,
+        0.2004
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 20% (interval 19% to 20%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1046,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7214,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.721 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.863,
+              "llr": null,
+              "weight": 0.1099,
+              "note": "cell +2.9 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.863,
+              "llr": null,
+              "weight": null,
+              "note": "+2.9 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0571,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7214,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.721 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.015403,
+              "llr": null,
+              "weight": 0.0003,
+              "note": "corrected R -2% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9174,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.917"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0328,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7214,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.721 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C09",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.19521888266319987,
+          "fault_probability_interval": [
+            0.1897588310608124,
+            0.2004258857013953
+          ],
+          "cause_probabilities": {
+            "healthy": 0.8045248505985759,
+            "temperature_effect": 0.000256266738224207,
+            "cooling_fault": 0.10460102081984295,
+            "lithium_plating": 0.0327718390870685,
+            "internal_damage": 8.81012277331743e-06,
+            "mechanical_weld_or_tab": 0.00012595206216218935,
+            "mechanical_contact_corrosion": 0.0006259186748572823,
+            "sei_growth": 1.5752772289135133e-07,
+            "ambiguous_ageing": 0.05708518436877256
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.015402824784570668,
+            "raw_excess": -0.17347362809172273,
+            "step_rel": 0.009508569380554548,
+            "step_z": 4.180022333242432,
+            "b_rel": -0.013703378916684513,
+            "growth_r2": 0.0005883148853274012,
+            "cell_minus_pack_k": 2.863000000000003,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9174,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C17",
+      "source_id": "C17",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.8073,
+      "p_temperature_effect": 0.0001,
+      "p_fault": 0.1925,
+      "p_fault_ci": [
+        0.1874,
+        0.1975
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 19% (interval 19% to 20%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.1028,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6731,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.673 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.844,
+              "llr": null,
+              "weight": 0.1087,
+              "note": "cell +2.8 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.844,
+              "llr": null,
+              "weight": null,
+              "note": "+2.8 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0567,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6731,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.673 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.043004,
+              "llr": null,
+              "weight": 0.0002,
+              "note": "corrected R -4% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9126,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.913"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0326,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6731,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.673 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C17",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.19254288617729093,
+          "fault_probability_interval": [
+            0.1873684565945105,
+            0.19747250532556604
+          ],
+          "cause_probabilities": {
+            "healthy": 0.80732198883481,
+            "temperature_effect": 0.0001351249878990863,
+            "cooling_fault": 0.10281489640271671,
+            "lithium_plating": 0.03257771326464687,
+            "internal_damage": 1.0128118202365453e-06,
+            "mechanical_weld_or_tab": 1.4479450584659554e-05,
+            "mechanical_contact_corrosion": 0.00038766807361316415,
+            "sei_growth": 7.90886699621077e-08,
+            "ambiguous_ageing": 0.056747037085239385
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.04300431497130819,
+            "raw_excess": -0.1992132036874823,
+            "step_rel": -0.005293856780933606,
+            "step_z": 2.227441162486921,
+            "b_rel": -0.007344767930361116,
+            "growth_r2": 8.77924723893253e-05,
+            "cell_minus_pack_k": 2.8440000000000047,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9126,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C08",
+      "source_id": "C08",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.8154,
+      "p_temperature_effect": 0.0005,
+      "p_fault": 0.1842,
+      "p_fault_ci": [
+        0.1801,
+        0.1899
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 18% (interval 18% to 19%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.0915,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7661,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.766 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.621,
+              "llr": null,
+              "weight": 0.0951,
+              "note": "cell +2.6 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.621,
+              "llr": null,
+              "weight": null,
+              "note": "+2.6 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0577,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7661,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.766 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": 0.010169,
+              "llr": null,
+              "weight": 0.0006,
+              "note": "corrected R +1% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9309,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.931"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0331,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7661,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.766 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C08",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.18416589969850156,
+          "fault_probability_interval": [
+            0.18007931127482313,
+            0.18992935749409845
+          ],
+          "cause_probabilities": {
+            "healthy": 0.8153537676230252,
+            "temperature_effect": 0.00048033267847320316,
+            "cooling_fault": 0.09151023615722705,
+            "lithium_plating": 0.03313812240713907,
+            "internal_damage": 1.099247078218465e-05,
+            "mechanical_weld_or_tab": 0.00015715154021087743,
+            "mechanical_contact_corrosion": 0.0016258980614405373,
+            "sei_growth": 2.866957245552201e-07,
+            "ambiguous_ageing": 0.05772321236597719
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": 0.010168761974557405,
+            "raw_excess": -0.14887803363355256,
+            "step_rel": 0.007557276673459594,
+            "step_z": 3.4150649359469964,
+            "b_rel": -0.003756989323989999,
+            "growth_r2": 7.510268662358488e-05,
+            "cell_minus_pack_k": 2.6209999999999987,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9309,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C32",
+      "source_id": "C32",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.8242,
+      "p_temperature_effect": 0.0003,
+      "p_fault": 0.1755,
+      "p_fault_ci": [
+        0.1712,
+        0.1798
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 18% (interval 17% to 18%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.0846,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7236,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.724 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.508,
+              "llr": null,
+              "weight": 0.0888,
+              "note": "cell +2.5 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.508,
+              "llr": null,
+              "weight": null,
+              "note": "+2.5 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0572,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7236,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.724 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.014142,
+              "llr": null,
+              "weight": 0.0003,
+              "note": "corrected R -1% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9218,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.922"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0328,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.7236,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.724 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C32",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.1754633193436086,
+          "fault_probability_interval": [
+            0.17120584669919556,
+            0.17975620027305722
+          ],
+          "cause_probabilities": {
+            "healthy": 0.8242380748636069,
+            "temperature_effect": 0.0002986057927845233,
+            "cooling_fault": 0.08462592219535231,
+            "lithium_plating": 0.032814848772695394,
+            "internal_damage": 3.15813087633649e-06,
+            "mechanical_weld_or_tab": 4.5149552019566204e-05,
+            "mechanical_contact_corrosion": 0.0008139747192391215,
+            "sei_growth": 1.631410562914751e-07,
+            "ambiguous_ageing": 0.05716010283236964
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.014142041277046213,
+            "raw_excess": -0.16832571297257082,
+            "step_rel": -0.006610405781484861,
+            "step_z": 3.0623044591777346,
+            "b_rel": -0.006635070901965,
+            "growth_r2": 0.0011243680191038719,
+            "cell_minus_pack_k": 2.507999999999999,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9218,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    },
+    {
+      "id": "C25",
+      "source_id": "C25",
+      "pack_id": "S-12",
+      "string_id": "string0",
+      "p_healthy": 0.8244,
+      "p_temperature_effect": 0.0002,
+      "p_fault": 0.1754,
+      "p_fault_ci": [
+        0.1719,
+        0.1796
+      ],
+      "verdict": "healthy",
+      "verdict_cause": "healthy",
+      "is_fault": false,
+      "confidence": {
+        "value": 0.765,
+        "level": "High"
+      },
+      "headline": "No cell fault: fault probability 18% (interval 17% to 18%), uncalibrated score. Confidence High (0.77).",
+      "diagnoses": [
+        {
+          "fault": "cooling",
+          "cause": "cooling_fault",
+          "label": "Cooling fault (self-heating)",
+          "p": 0.0853,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6955,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.695 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "cell_minus_pack_k",
+              "value": 2.527,
+              "llr": null,
+              "weight": 0.0899,
+              "note": "cell +2.5 K above pack"
+            },
+            {
+              "signal": "unexplained_heat_k",
+              "value": 2.527,
+              "llr": null,
+              "weight": null,
+              "note": "+2.5 K not explained by I2R"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "ageing",
+          "cause": "ambiguous_ageing",
+          "label": "Ambiguous ageing",
+          "p": 0.0569,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6955,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.695 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "corrected_excess",
+              "value": -0.030208,
+              "llr": null,
+              "weight": 0.0003,
+              "note": "corrected R -3% vs baseline at 25 C"
+            },
+            {
+              "signal": "soh_recent",
+              "value": 0.9279,
+              "llr": null,
+              "weight": null,
+              "note": "SOH 0.928"
+            }
+          ],
+          "action": null
+        },
+        {
+          "fault": "plating",
+          "cause": "lithium_plating",
+          "label": "Lithium plating",
+          "p": 0.0327,
+          "ci": null,
+          "evidence": [
+            {
+              "signal": "R_mOhm",
+              "value": 1.6955,
+              "llr": null,
+              "weight": null,
+              "note": "corrected R 1.695 mOhm vs baseline 1.748 mOhm at 25 C"
+            },
+            {
+              "signal": "post_cold_charge_rise",
+              "value": 0.0,
+              "llr": null,
+              "weight": 0.0344,
+              "note": "R rise after cold charging +0.0%"
+            },
+            {
+              "signal": "n_cold_charge",
+              "value": 0.0,
+              "llr": null,
+              "weight": null,
+              "note": "0 cold-charge events"
+            }
+          ],
+          "action": null
+        }
+      ],
+      "flags": {
+        "sensor_fault_suspected": false,
+        "sensor_reasons": [],
+        "diverges_from_neighbours": false,
+        "pack_wide_drift": false,
+        "chemistry_mismatch": false,
+        "has_ocv": false,
+        "has_soh": true,
+        "has_pack_temp": true,
+        "is_fault": false
+      },
+      "recommendation": {
+        "cell_id": "C25",
+        "verdict": "healthy",
+        "confidence_level": "High",
+        "actions": [
+          "none"
+        ],
+        "bypass": false,
+        "bypass_reason": null,
+        "safety": false,
+        "transfer_allowed": true,
+        "blocked_irreversible": [],
+        "text": "no action",
+        "evidence": {
+          "fault_probability": 0.17538626933416174,
+          "fault_probability_interval": [
+            0.17191606403761098,
+            0.17963771798537162
+          ],
+          "cause_probabilities": {
+            "healthy": 0.8243956814782382,
+            "temperature_effect": 0.0002180491876000927,
+            "cooling_fault": 0.0852523702654004,
+            "lithium_plating": 0.03267863317358558,
+            "internal_damage": 2.719601741468058e-06,
+            "mechanical_weld_or_tab": 3.888021272929417e-05,
+            "mechanical_contact_corrosion": 0.000490730335835736,
+            "sei_growth": 1.0652318778968913e-07,
+            "ambiguous_ageing": 0.05692282922168129
+          },
+          "confidence": 0.765,
+          "confidence_level": "High",
+          "probability_status": "uncalibrated_scores",
+          "key_features": {
+            "corrected_excess": -0.0302075823705672,
+            "raw_excess": -0.18090950548605333,
+            "step_rel": 0.006348304919450128,
+            "step_z": 2.738259879335905,
+            "b_rel": -0.009942689833692321,
+            "growth_r2": 5.407312135941034e-06,
+            "cell_minus_pack_k": 2.5270000000000046,
+            "post_cold_charge_rise": 0.0,
+            "soh_recent": 0.9279,
+            "ocv_recent_mv": null
+          }
+        }
+      }
+    }
+  ],
+  "notes": [
+    "p values are celldx cause probabilities; see probability_status",
+    "llr is null: celldx scores are logistic memberships, not likelihood ratios; see weight",
+    "per-cause intervals are not computed; ci is the fault-probability bootstrap interval"
+  ],
+  "dataset": null
+}

@@ -1,0 +1,11 @@
+........................................................................ [ 47%]
+........................................................................ [ 95%]
+.......                                                                  [100%]
+=============================== warnings summary ===============================
+tests/test_engine.py::test_parallel_feature_extraction_matches_serial
+tests/test_engine.py::test_parallel_feature_extraction_matches_serial
+  /usr/local/lib/python3.13/multiprocessing/popen_fork.py:73: DeprecationWarning: This process (pid=6223) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+151 passed, 2 warnings in 158.07s (0:02:38)
